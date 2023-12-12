@@ -5,7 +5,7 @@ go 1.21.3
 require (
 	github.com/aws/aws-sdk-go v1.49.0
 	github.com/stretchr/testify v1.8.4
-	github.com/xmidt-org/idock v0.4.2
+	github.com/xmidt-org/idock v0.5.0
 )
 
 require (
