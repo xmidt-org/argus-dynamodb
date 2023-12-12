@@ -3,7 +3,10 @@
 
 package dynamo
 
-import "time"
+import (
+	"io"
+	"time"
+)
 
 // Verbosity sets the verbosity level for the dynamo package.
 func Verbosity(verbosity int) Option {
@@ -68,16 +71,6 @@ func MaxDynamoActionWait(max time.Duration) Option {
 	})
 }
 
-// KeepExisting keeps the existing table if it exists.
-//
-// The default is to delete the existing table.
-func KeepExisting() Option {
-	return optionFunc(func(a *Dynamo) error {
-		a.keepExisting = true
-		return nil
-	})
-}
-
 // HumanTableName sets the human readable table name.
 func HumanTableName(humanTableName string) Option {
 	return optionFunc(func(a *Dynamo) error {
@@ -92,6 +85,16 @@ func HumanTableName(humanTableName string) Option {
 func GeneralDelay(generalDelay time.Duration) Option {
 	return optionFunc(func(a *Dynamo) error {
 		a.generalDelay = generalDelay
+		return nil
+	})
+}
+
+// Stdout sets the writer for stdout.
+func Stdout(stdout io.Writer) Option {
+	return optionFunc(func(a *Dynamo) error {
+		if stdout != nil {
+			a.stdout = stdout
+		}
 		return nil
 	})
 }
@@ -118,6 +121,15 @@ func validateEndpoint() Option {
 	return optionFunc(func(a *Dynamo) error {
 		if a.endpoint == "" {
 			a.logf(1, "warning: endpoint not set\n")
+		}
+		return nil
+	})
+}
+
+func validateHumanTableName() Option {
+	return optionFunc(func(a *Dynamo) error {
+		if a.humanTableName == "" {
+			a.logf(1, "warning: human table name not set\n")
 		}
 		return nil
 	})

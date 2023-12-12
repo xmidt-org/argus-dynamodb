@@ -6,6 +6,8 @@ package dynamo
 import (
 	"context"
 	"fmt"
+	"io"
+	"os"
 	"strings"
 	"time"
 
@@ -28,7 +30,7 @@ type Dynamo struct {
 	maxDynamoActionWait   time.Duration
 	generalDelay          time.Duration
 
-	keepExisting bool
+	stdout io.Writer
 
 	verbosity int
 	svc       *dynamodb.DynamoDB
@@ -45,15 +47,15 @@ func (o optionFunc) apply(a *Dynamo) error {
 }
 
 // New creates a new ArgusDynamodb instance
-func New(opts ...Option) *Dynamo {
+func New(opts ...Option) (*Dynamo, error) {
 	var d Dynamo
 
 	defaults := []Option{
+		Stdout(os.Stdout),
 		MaxWaitForDynamo(10 * time.Second),
 		MaxDynamoResponseWait(20 * time.Microsecond),
 		MaxDynamoActionWait(5 * time.Second),
 		GeneralDelay(10 * time.Millisecond),
-		HumanTableName("Set HumanTableName()"),
 	}
 
 	opts = append(defaults, opts...)
@@ -61,15 +63,17 @@ func New(opts ...Option) *Dynamo {
 	opts = append(opts,
 		validateCredentials(),
 		validateRegion(),
-		validateEndpoint())
+		validateEndpoint(),
+		validateHumanTableName(),
+	)
 
 	for _, opt := range opts {
 		err := opt.apply(&d)
 		if err != nil {
-			panic(err)
+			return nil, err
 		}
 	}
-	return &d
+	return &d, nil
 }
 
 // Create creates a new DynamoDB table, or replaces an existing table.
@@ -93,20 +97,19 @@ func (d *Dynamo) Create(ctx context.Context, table *dynamodb.CreateTableInput) e
 	}
 	d.logf(1, "dynamo is ready.\n")
 
-	if !d.keepExisting {
-		err = d.truncateTable(ctx, *table.TableName)
-		if err != nil {
-			return d.wrap(err)
-		}
-
-		d.logf(1, "waiting for table to be deleted.\n")
-
-		err = d.confirmTableAbsent(ctx, *table.TableName)
-		if err != nil {
-			return d.wrap(err)
-		}
+	err = d.truncateTable(ctx, *table.TableName)
+	if err != nil {
+		return d.wrap(err)
 	}
 
+	d.logf(1, "waiting for table to be deleted.\n")
+
+	err = d.confirmTableAbsent(ctx, *table.TableName)
+	if err != nil {
+		return d.wrap(err)
+	}
+
+	d.logf(1, "create table.\n")
 	err = d.createTable(ctx, table)
 	if err != nil {
 		return d.wrap(err)
@@ -269,7 +272,7 @@ func (d *Dynamo) logf(level int, format string, a ...any) {
 		buf.WriteString(d.humanTableName + " DynamoDB: ")
 		fmt.Fprintf(&buf, format, a...)
 
-		fmt.Print(buf.String())
+		_, _ = d.stdout.Write([]byte(buf.String()))
 	}
 }
 

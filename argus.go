@@ -16,17 +16,18 @@ type ArgusDynamodb struct {
 }
 
 // New creates a new ArgusDynamodb instance
-func New(opts ...dynamo.Option) *ArgusDynamodb {
+func New(opts ...dynamo.Option) (*ArgusDynamodb, error) {
 	var ad ArgusDynamodb
+	var err error
 
 	opts = append(opts, dynamo.HumanTableName("Argus"))
-	ad.db = dynamo.New(opts...)
+	ad.db, err = dynamo.New(opts...)
 
 	if ad.db == nil {
-		return nil
+		return nil, err
 	}
 
-	return &ad
+	return &ad, nil
 }
 
 func (ad *ArgusDynamodb) Create(ctx context.Context) error {

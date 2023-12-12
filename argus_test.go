@@ -20,17 +20,18 @@ func TestEnd2End(t *testing.T) {
 		t.Run(fmt.Sprintf("run %d", i), func(t *testing.T) {
 			assert := assert.New(t)
 
-			a := argusdynamodb.New(
+			a, err := argusdynamodb.New(
 				dynamo.Credentials("accesKey", "secretKey"),
 				dynamo.Region("local"),
 				dynamo.Endpoint("http://localhost:7804"),
 				dynamo.Verbosity(99),
 			)
+			assert.NoError(err)
 			if !assert.NotNil(a) {
 				return
 			}
 
-			err := a.Create(context.Background())
+			err = a.Create(context.Background())
 			assert.NoError(err)
 		})
 	}
