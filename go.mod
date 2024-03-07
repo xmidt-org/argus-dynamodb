@@ -3,7 +3,7 @@ module github.com/xmidt-org/argus-dynamodb
 go 1.21.3
 
 require (
-	github.com/aws/aws-sdk-go v1.50.32
+	github.com/aws/aws-sdk-go v1.50.33
 	github.com/stretchr/testify v1.9.0
 	github.com/xmidt-org/idock v0.5.0
 )
