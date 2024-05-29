@@ -1,17 +1,17 @@
 # SPDX-FileCopyrightText: 2023 Comcast Cable Communications Management, LLC
 # SPDX-License-Identifier: Apache-2.0
---- 
-services: 
-  dynamodb: 
+---
+services:
+  dynamodb:
     hostname: dynamodb.local.amazonaws.com
     image: amazon/dynamodb-local
     command: -jar DynamoDBLocal.jar -inMemory -sharedDb
-    ports: 
+    ports:
       - "7804:8000"
-  argus: 
-    depends_on: 
+  argus:
+    depends_on:
       - dynamodb
     image: "ghcr.io/xmidt-org/argus:latest"
-    ports: 
+    ports:
       - "7800-7803:6600-6603"
 version: "3.8"
