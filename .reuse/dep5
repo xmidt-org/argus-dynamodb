@@ -34,3 +34,15 @@ License: Apache-2.0
 Files: .whitesource
 Copyright: SPDX-FileCopyrightText: 2023 Comcast Cable Communications Management, LLC
 License: Apache-2.0
+
+Files: AUTHORS
+Copyright: SPDX-FileCopyrightText: 2023 Comcast Cable Communications Management, LLC
+License: Apache-2.0
+
+Files: CHANGELOG.md
+Copyright: SPDX-FileCopyrightText: 2023 Comcast Cable Communications Management, LLC
+License: Apache-2.0
+
+Files: CONTRIBUTING.md
+Copyright: SPDX-FileCopyrightText: 2023 Comcast Cable Communications Management, LLC
+License: Apache-2.0
