@@ -6,8 +6,8 @@ package argusdynamodb
 import (
 	"context"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/service/dynamodb"
+	"github.com/aws/aws-sdk-go/aws"              //nolint:staticcheck // AWS SDK v1 migration is a larger effort
+	"github.com/aws/aws-sdk-go/service/dynamodb" //nolint:staticcheck // AWS SDK v1 migration is a larger effort
 	"github.com/xmidt-org/argus-dynamodb/dynamo"
 )
 

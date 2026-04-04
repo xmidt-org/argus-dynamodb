@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/service/dynamodb"
+	"github.com/aws/aws-sdk-go/aws"              //nolint:staticcheck // AWS SDK v1 migration is a larger effort
+	"github.com/aws/aws-sdk-go/service/dynamodb" //nolint:staticcheck // AWS SDK v1 migration is a larger effort
 	"github.com/stretchr/testify/assert"
 	"github.com/xmidt-org/argus-dynamodb/dynamo"
 	"github.com/xmidt-org/idock"
@@ -111,6 +111,7 @@ func TestEnd2End(t *testing.T) {
 	}
 }
 
+//nolint:funlen // Test table is long but clear
 func TestWarnings(t *testing.T) {
 	tests := []struct {
 		description string

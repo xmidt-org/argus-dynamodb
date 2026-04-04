@@ -1,0 +1,36 @@
+# SPDX-FileCopyrightText: 2023 Comcast Cable Communications Management, LLC
+# SPDX-License-Identifier: Apache-2.0
+
+version: 2
+
+linters:
+  enable:
+    - bodyclose
+    - dupl
+    - errorlint
+    - funlen
+    - goconst
+    - gosec
+    - misspell
+    - prealloc
+    - unconvert
+
+linters-settings:
+  funlen:
+    lines: 80  # Allow slightly longer functions
+  staticcheck:
+    checks:
+      - all
+      - -SA1019  # Ignore deprecation warnings (AWS SDK v1 migration is a larger effort)
+
+issues:
+  exclude-rules:
+    # Exclude dupl and funlen checks for test files
+    - path: _test\.go
+      linters:
+        - dupl
+        - funlen
+    # Exclude SA1019 deprecation warnings for AWS SDK v1  
+    - text: "SA1019"
+      linters:
+        - staticcheck

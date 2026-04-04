@@ -11,10 +11,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/dynamodb"
+	"github.com/aws/aws-sdk-go/aws"              //nolint:staticcheck // AWS SDK v1 migration is a larger effort
+	"github.com/aws/aws-sdk-go/aws/credentials"  //nolint:staticcheck // AWS SDK v1 migration is a larger effort
+	"github.com/aws/aws-sdk-go/aws/session"      //nolint:staticcheck // AWS SDK v1 migration is a larger effort
+	"github.com/aws/aws-sdk-go/service/dynamodb" //nolint:staticcheck // AWS SDK v1 migration is a larger effort
 )
 
 type Dynamo struct {
@@ -50,13 +50,14 @@ func (o optionFunc) apply(a *Dynamo) error {
 func New(opts ...Option) (*Dynamo, error) {
 	var d Dynamo
 
-	defaults := []Option{
+	defaults := make([]Option, 0, 5+len(opts))
+	defaults = append(defaults,
 		Stdout(os.Stdout),
-		MaxWaitForDynamo(10 * time.Second),
-		MaxDynamoResponseWait(20 * time.Microsecond),
-		MaxDynamoActionWait(5 * time.Second),
-		GeneralDelay(10 * time.Millisecond),
-	}
+		MaxWaitForDynamo(10*time.Second),
+		MaxDynamoResponseWait(20*time.Microsecond),
+		MaxDynamoActionWait(5*time.Second),
+		GeneralDelay(10*time.Millisecond),
+	)
 
 	opts = append(defaults, opts...)
 
