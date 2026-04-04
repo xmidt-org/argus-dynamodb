@@ -1,0 +1,70 @@
+version = 1
+SPDX-PackageName = "argus-dynamodb"
+SPDX-PackageSupplier = "Weston Schmidt <weston_scmidt@alumni.purdue.edu>"
+SPDX-PackageDownloadLocation = "https://github.com/xmidt-org/argus-dynamodb"
+
+[[annotations]]
+path = "CODE_OF_CONDUCT.md"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "SPDX-FileCopyrightText: 2014-2021 Coraline Ada Ehmke and contributors"
+SPDX-License-Identifier = "CC-BY-4.0"
+
+[[annotations]]
+path = ".golangci.yml"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "SPDX-FileCopyrightText: 2023 Comcast Cable Communications Management, LLC"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = "go.mod"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "SPDX-FileCopyrightText: 2023 Comcast Cable Communications Management, LLC"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = "go.sum"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "SPDX-FileCopyrightText: 2023 Comcast Cable Communications Management, LLC"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = ".gitignore"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "SPDX-FileCopyrightText: 2023 Comcast Cable Communications Management, LLC"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = "MAINTAINERS.md"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "SPDX-FileCopyrightText: 2023 Comcast Cable Communications Management, LLC"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = "README.md"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "SPDX-FileCopyrightText: 2023 Comcast Cable Communications Management, LLC"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = ".whitesource"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "SPDX-FileCopyrightText: 2023 Comcast Cable Communications Management, LLC"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = "AUTHORS"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "SPDX-FileCopyrightText: 2023 Comcast Cable Communications Management, LLC"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = "CHANGELOG.md"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "SPDX-FileCopyrightText: 2023 Comcast Cable Communications Management, LLC"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = "CONTRIBUTING.md"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "SPDX-FileCopyrightText: 2023 Comcast Cable Communications Management, LLC"
+SPDX-License-Identifier = "Apache-2.0"
