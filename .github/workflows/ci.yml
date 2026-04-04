@@ -18,7 +18,10 @@ on:
   pull_request:
   workflow_dispatch:
 
-permissions: {}
+permissions:
+  pull-requests: read
+  contents:      write
+  packages:      write
 
 jobs:
   ci:
