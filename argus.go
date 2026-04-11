@@ -1,6 +1,8 @@
 // SPDX-FileCopyrightText: 2023 Comcast Cable Communications Management, LLC
 // SPDX-License-Identifier: Apache-2.0
 
+// Package argusdynamodb provides integration testing support for Argus by creating
+// and managing DynamoDB tables with the Argus schema.
 package argusdynamodb
 
 import (

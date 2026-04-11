@@ -1,6 +1,8 @@
 // SPDX-FileCopyrightText: 2023 Comcast Cable Communications Management, LLC
 // SPDX-License-Identifier: Apache-2.0
 
+// Package dynamo provides a simplified interface for creating and managing DynamoDB
+// tables for integration testing, with support for table lifecycle management.
 package dynamo
 
 import (
